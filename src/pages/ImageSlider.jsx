@@ -186,11 +186,9 @@ const ImageSlider = () => {
   }, []);
 
   const startSlider = () => {
-    if (!isPaused) {
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }, 8000);
-    }
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 8000);
   };
 
   const stopSlider = () => {
@@ -212,7 +210,9 @@ const ImageSlider = () => {
   };
 
   useEffect(() => {
-    startSlider();
+    if (!isPaused) {
+      startSlider();
+    }
 
     return () => {
       stopSlider();
@@ -220,7 +220,7 @@ const ImageSlider = () => {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, []);
+  }, [isPaused]);
 
   const handleImageClick = (index) => {
     setCurrentIndex(index);
@@ -275,7 +275,7 @@ const ImageSlider = () => {
 
   return (
     <>
-      {FullScreen &&
+      {FullScreen && (
         <div className='full_screen'>
           <div className='product_main'>
             <img src={images[currentIndex].url} alt={`Slide ${currentIndex + 1}`} loading='lazy' />
@@ -292,22 +292,22 @@ const ImageSlider = () => {
             </div>
           </div>
         </div>
-      }
+      )}
 
       <div className="image-slider">
         <div className='brand_Logo'>
-          <img src={BrandLogo} />
+          <img src={BrandLogo} alt="Brand Logo" />
         </div>
         <div className="sidebar" ref={sidebarRef}>
-          {images?.map((image, index) => (
+          {images.map((image, index) => (
             <div
               key={index}
               className={`thumbnail ${currentIndex === index ? 'active' : ''}`}
               onClick={() => handleImageClick(index)}
               ref={currentIndex === index ? activeThumbnailRef : null}
             >
-              <img src={image?.url || ImagePlaceholder} alt={`Slide ${index + 1}`} loading='lazy' />
-              <p>{image?.name?.charAt(0)?.toUpperCase() + image?.name?.slice(1)?.toLowerCase()}</p>
+              <img src={image.url || ImagePlaceholder} alt={`Slide ${index + 1}`} loading='lazy' />
+              <p>{image.name.charAt(0).toUpperCase() + image.name.slice(1).toLowerCase()}</p>
             </div>
           ))}
         </div>
@@ -341,15 +341,16 @@ const ImageSlider = () => {
               setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
               resetSlider();
             }}>next</button>
+            <button onClick={() => { setIsPaused(false); startSlider(); }}>Start</button>
+            <button onClick={() => { setIsPaused(true); stopSlider(); }}>Stop</button>
           </div>
         </div>
         <div className='main_image_mobile'>
           <div className="main-image1">
             <div className='brand_Logo1'>
-              <img src={BrandLogo} />
+              <img src={BrandLogo} alt="Brand Logo" />
             </div>
             <p>Welcome to Presentation of Vivid Labs Pvt.Ltd.</p>
-
             <div className='input_suggest'>
               <input
                 type="text"
@@ -378,15 +379,17 @@ const ImageSlider = () => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
                 resetSlider();
               }}>next</button>
+              <button onClick={() => { setIsPaused(false); startSlider(); }}>Start</button>
+              <button onClick={() => { setIsPaused(true); stopSlider(); }}>Stop</button>
             </div>
           </div>
         </div>
-        <div className="control-buttons">
-          <button onClick={startSlider}>Start</button>
-          <button onClick={stopSlider}>Stop</button>
-        </div>
       </div>
     </>
+  );
+};
+
+export default ImageSlider;
   );
 };
 
