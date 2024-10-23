@@ -336,11 +336,12 @@ const ImageSlider = () => {
               setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
               resetSlider();
             }}>prev</button>
-            <button className='opne_desk' onClick={() => setFullScreen(!FullScreen)}>Open Full Mode</button>
             <button onClick={() => {
               setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
               resetSlider();
             }}>next</button>
+          </div>
+          <div className="start-stop-buttons">
             <button onClick={() => { setIsPaused(false); startSlider(); }}>Start</button>
             <button onClick={() => { setIsPaused(true); stopSlider(); }}>Stop</button>
           </div>
@@ -374,11 +375,12 @@ const ImageSlider = () => {
                 setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
                 resetSlider();
               }}>prev</button>
-              <button className='opne_desk' onClick={() => setFullScreen(!FullScreen)}>Open Full Mode</button>
               <button onClick={() => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
                 resetSlider();
               }}>next</button>
+            </div>
+            <div className="start-stop-buttons">
               <button onClick={() => { setIsPaused(false); startSlider(); }}>Start</button>
               <button onClick={() => { setIsPaused(true); stopSlider(); }}>Stop</button>
             </div>
@@ -386,10 +388,6 @@ const ImageSlider = () => {
         </div>
       </div>
     </>
-  );
-};
-
-export default ImageSlider;
   );
 };
 
