@@ -1,0 +1,399 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("./assets/medicine_bg.jpg") no-repeat center center;
+  background-size: cover;
+  opacity: 0.1; 
+  z-index: -1;
+  filter: brightness(90%); 
+}
+
+.title_search{
+  display: flex;
+  
+}
+.title_search p{
+  padding-top: 8px;
+  padding-left: 50px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.image-slider {
+  display: flex;
+  position: relative;
+}
+.brand_Logo{
+  position: absolute;
+  top: -12px;
+  right: -2%;
+}
+.brand_Logo img{
+  width: 170px;
+  height: 75px;
+  object-fit: contain;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid gainsboro;
+  margin-right: 20px;
+  height: 86vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnail {
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.thumbnail img {
+  width: 100px;
+  height: auto;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border: 1px solid #007BFF;
+  width: 102px;
+  height: 100%;
+}
+
+.thumbnail p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+.main-image {
+  width: 100%;
+  height: 85vh;
+  text-align: center;
+  position: relative;
+}
+
+.main-image img {
+  width: 100%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.main_image_mobile {
+  display: none;
+}
+
+.main-image1 {
+  display: none;
+}
+
+.mobile_dropdown {
+  display: none;
+}
+
+.buttons_d {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.buttons_d button {
+  padding: 6px 13px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+}
+
+.main-image input{
+border: 1px solid #ADADAD;
+padding: 10px 15px;
+outline: none;
+color: black;
+border-radius: 10px;
+margin-bottom: 20px;
+
+min-width: 40%;
+
+}
+.main-image1 input{
+  border: 1px solid #ADADAD;
+  padding: 10px 15px;
+  outline: none;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  
+  min-width: 100%;
+  margin-top: 30px;
+  
+  }
+
+.suggestions {
+  border: 1px solid #ADADAD;
+ border-bottom-left-radius: 10px;
+ border-top-right-radius: 10px;
+  margin-top: 5px;
+  list-style: none;
+  padding: 10px;
+  background: white;
+  max-height: 200px;
+  overflow-y: auto;
+  width:40%;
+  position: absolute;
+  left: 20%;
+  transform: translateX(-50%);
+  top: 30px;
+}
+
+.suggestions li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+.welcome_text{
+  display: none;
+}
+
+.full_screen{
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  z-index: 200;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.full_screen .product_main img{
+  width: 100vw;
+  height: auto;
+  object-fit: contain;
+  max-height: 60vh;
+}
+
+.full_screen .product_main button{
+  background-color: gray;
+  color: white;
+  font-weight: 600;
+}
+.buttons_d .opne_desk{
+  display: none;
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .title_search{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .title_search p{
+    text-wrap: wrap;
+    padding-left: 0px;
+    padding-bottom: 15px;
+  }
+  .brand_Logo img{
+    width: 100px;
+    height: 100px;
+  }
+ 
+  .full_screen .product_main img{
+    width: 100vw;
+    height: auto;
+    object-fit: contain;
+    max-height: 80vh;
+  }
+  .buttons_d{
+    padding-bottom: 10px;
+  }
+  .buttons_d .opne_desk{
+    display: block;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+
+  .image-slider {
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+  }
+
+  .thumbnail.active {
+    opacity: 1;
+    border: none;
+    width: 102px;
+    height: 100%;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    margin-right: 0;
+    margin-bottom: 1px;
+    height: auto;
+    width: 100%;
+    padding: 20px 0px;
+  }
+  .thumbnail .active{
+    height: 100%;
+    border: none !important;
+  }
+
+  .thumbnail img {
+    width: 70px;
+    margin-right: 10px;
+  }
+
+  .main-image {
+    display: none;
+  }
+
+  .main_image_mobile {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* background-color: black !important; */
+  }
+
+  .main-image1 {
+    width: 100%;
+    height: 300px;
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-70%);
+  }
+
+  .main-image1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .input_suggest{
+    position: relative;
+  }
+  .suggestions{
+    width: 100%;
+    left: 50% !important;
+    top: 78%; 
+  }
+  .input_suggest{
+    /* background-color: red; */
+  }
+  .main-image1 .buttons_d{
+    margin-top: 30px;
+  }
+  .brand_Logo {
+   position: relative;
+   display: none;
+  }
+  .brand_Logo1 img{
+    margin-bottom: 20px;
+    width: 120px;
+    height: 55px;
+    object-fit: contain;
+  }
+  .welcome_text{
+    display: block;
+    position: relative;
+    top: 50px;
+    /* transform: translateX(-50%); */
+    text-align: center;
+    /* background: #000; */
+    width: 100%;
+
+  }
+  .welcome_text p{
+    text-align: center;
+
+  }
+  /* body::before {
+    background-size: fill; 
+    opacity: 1; 
+  } */
+
+  body{
+    /* height: 130vh; */
+  }
+   body::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("./assets/medicine_bg.jpg");
+    background-size: contain;
+    opacity: 0.2; 
+    height: 120vh;
+    width: 100vw;
+    z-index: -1;
+    filter: brightness(80%); 
+   }
+}
+
+
+@media (max-width:380px) {
+  .brand_Logo1{
+    padding-top: 10px;
+  }
+  .main-image1 .buttons_d{
+    margin-top: 5px;
+  }
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    margin-right: 0;
+    margin-bottom: 1px;
+    height: auto;
+    width: 100%;
+    padding: 20px 0px;
+    margin-top: 100px;
+  }
+}
